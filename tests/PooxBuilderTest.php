@@ -27,7 +27,7 @@ class PooxBuilderTest extends TestCase {
         $this->builder->addNode('nav');
 
         $this->assertSame(1, count($this->builder->getNodes()));
-        $this->assertSame('', $this->getFirstNode()->getSelector());
+        $this->assertSame(' ', $this->getFirstNode()->getSelector());
     }
 
     public function testShouldAddChildNodeToCurrent() {
