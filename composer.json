@@ -1,0 +1,25 @@
+{
+    "name": "jugid/poox",
+    "description": "Create your CSS files with objects",
+    "type": "library",
+    "require": {
+        "twig/twig": "^3.0",
+        "symfony/finder": "^5.3",
+        "symfony/filesystem": "^5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Poox\\": "src/",
+            "Poox\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jugid",
+            "email": "gidjulien@gmail.com"
+        }
+    ]
+}

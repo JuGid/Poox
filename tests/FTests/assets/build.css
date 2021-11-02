@@ -1,0 +1,36 @@
+body {
+    background : #a0c918;
+}
+
+body p {
+    padding : 0px;
+}
+
+nav {
+    background : #a0c918;
+}
+
+nav ul {
+    margin : 0px;
+    padding : 0px;
+    list-style : none  ;
+}
+
+nav li {
+    display : inline-block;
+}
+
+nav a {
+    display : block;
+    padding : 6px 12px;
+    text-decoration : none;
+}
+
+nav>h1 {
+    padding : 0px;
+}
+
+nav>h1~p {
+    padding : 0px;
+}
+

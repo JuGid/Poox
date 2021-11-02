@@ -1,0 +1,8 @@
+{% for definition in definitions %}
+{{ definition.selector | raw }} {
+{% for name, value in definition.properties %}
+    {{ name }} : {{ value }};
+{% endfor %}
+}
+
+{% endfor %}
