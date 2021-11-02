@@ -60,4 +60,12 @@ class PooxNode {
         return $this->name;
     }
 
+    public function setName(string $name) : void {
+        $this->$name = $name;
+    }
+
+    public function addSelector(string $selector) : void {
+        $this->setName($this->name . $selector);
+    }
+
 }

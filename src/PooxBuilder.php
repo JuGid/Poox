@@ -7,9 +7,10 @@ use LogicException;
 use Poox\Node\PooxNode;
 use Poox\Node\PooxNodeType;
 use Poox\Trait\PropertiesTrait;
+use Poox\Trait\SelectorTrait;
 
 class PooxBuilder {
-    use PropertiesTrait;
+    use PropertiesTrait, SelectorTrait;
 
     public const MOST_USED_UNIT = 'px';
     
@@ -17,8 +18,21 @@ class PooxBuilder {
 
     private ?PooxNode $currentNode = null;
 
+    public function addNode(string $name, string $selector = PooxNodeType::INSIDE) : self {
+        $node = new PooxNode($name, $selector);
+        
+        if(!$this->isCurrentNodeNull()) {
+            $this->currentNode->addNode($node);
+        } else {
+            $this->nodes[] = $node;
+        }
+
+        $this->currentNode = $node;
+        return $this;
+    }
+
     public function addProperty(string $name, string|int|float|array $value) : self {
-        if($this->currentNode === null) {
+        if($this->isCurrentNodeNull()) {
             throw new LogicException('You should add a node before setting a property');
         }
 
@@ -30,20 +44,6 @@ class PooxBuilder {
         return $this;
     }
 
-    public function addNode(string $name, string $selector = PooxNodeType::NONE) : self {
-        $node = new PooxNode($name, $selector);
-        
-        if($this->currentNode !== null) {
-            $this->currentNode->addNode($node);
-        } else {
-            $this->nodes[] = $node;
-        }
-
-        $this->currentNode = $node;
-        return $this;
-    }
-
-
     public function endNode() : self {
         $this->currentNode = $this->currentNode->getParent();
         return $this;
@@ -53,12 +53,40 @@ class PooxBuilder {
         return $this->nodes;
     }
 
+    public function getCurrentNode() : PooxNode {
+        return $this->currentNode;
+    }
+
+    public function isCurrentNodeNull() : bool {
+        return $this->currentNode === null;
+    }
+
     /*
     * ALIASES
     */
 
     public function add(string $name, string $selector = PooxNodeType::INSIDE) : self {
         return $this->addNode($name, $selector);
+    }
+
+    public function addByClass(string $name, string $selector = PooxNodeType::INSIDE) : self {
+        return $this->addNode('.'.$name, $selector);
+    }
+
+    public function addById(string $name, string $selector = PooxNodeType::INSIDE) : self {
+        return $this->addNode('#'.$name, $selector);
+    }
+
+    public function addByElement(string $name, string $selector = PooxNodeType::INSIDE) : self {
+        return $this->addNode($name, $selector);
+    }
+
+    public function addForAll() : self {
+        if($this->isCurrentNodeNull()) {
+            throw new LogicException('Cannot select all elements in another node');
+        }
+
+        return $this->addNode('*', PooxNodeType::NONE);
     }
 
     public function end() : self {
