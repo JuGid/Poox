@@ -1,18 +1,19 @@
 # Poox
 [![codecov](https://codecov.io/gh/JuGid/Poox/branch/master/graph/badge.svg?token=MYW4EAZ78V)](https://codecov.io/gh/JuGid/Poox) 
+
+Poox is a library used to generate CSS files as PHP classes.
+The name is the concatenation of POO (Programmation Orientée Objet) and CSS (sounds as X in French)
+
 ## Installation
 
+To install Poox, just get it from composer :
 `composer require jugid/poox`
 
 ## Guide
 
-### Install Poox
-
-`composer require jugid/poox`
-
 ### Setup
 
-build.php
+**build.php**
 ```php
 <?php
 
@@ -26,11 +27,13 @@ $variables = new PooxVariables();
 $variables->add('poox-green', '#a0c918');
 
 $poox = new Poox($variables);
-$poox->generate(__DIR__.'/css', __DIR__. '/assets', 'The\Namespaces\Of\PooxStyles');
+$poox->generate(__DIR__.'/myClasses', __DIR__. '/assets', 'The\Namespaces\Of\PooxStyles');
 ```
 
 ### Create a style (or more)
+Define the `style() : void` function and use the builder to create a hierarchical CSS.
 
+**Body.php**
 ```php
 <?php
 
@@ -49,13 +52,17 @@ class Body extends PooxStyle {
 ```
 
 ### Run Poox
+This command will generate a file named `build.css` in the defined directory or separated files if `inSeparateFiles()`is passed to Poox in your `build.php`
 
-`php build.php`
+```
+php build.php
+```
 
 ## Roadmap
 
-- [] Finish methods for all properties
-- [] Syntactic sugar
+- [ ] Finish methods for all properties
+- [ ] Multiple namespace styles
+- [ ] Syntactic sugar
 
 ## License
 
