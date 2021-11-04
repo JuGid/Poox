@@ -2,12 +2,13 @@
 
 namespace Poox;
 
+use Poox\Interfaces\Creator;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-class PooxCreator {
+class PooxCreator implements Creator {
 
     private FilesystemLoader $loader;
 
@@ -22,23 +23,16 @@ class PooxCreator {
     }
 
     public function create(string $directory, array $definitions, bool $separateFiles) : void {
-        $this->clear($directory);
+        PooxFilesystem::clearDirectory($directory);
         $renderedDefinitions = $this->renderDefinitions($definitions);
         
         foreach($renderedDefinitions as $parent => $render) {
             if($separateFiles) {
-                $this->writeInFile($directory, '/'.$parent.'.css', $render);
+                PooxFilesystem::writeInFile($directory, '/'.$parent.'.css', $render);
             } else {
-                $this->writeInFile($directory, $this->genericfilename, $render);
+                PooxFilesystem::writeInFile($directory, $this->genericfilename, $render);
             }
         }
-    }
-
-    private function clear(string $directory) : void {
-        $finder = new Finder();
-        $filesystem = new Filesystem();
-        $files = $finder->files()->in($directory);
-        $filesystem->remove($files);
     }
 
     private function renderDefinitions(array $definitions) : array {
@@ -49,11 +43,5 @@ class PooxCreator {
         }
 
         return $renderedDefinitions;
-    }
-
-    private function writeInFile(string $directory, string $filename ,string $render) {
-        $file = fopen($directory.$filename, 'a');
-        fwrite($file, $render);
-        fclose($file);
     }
 }

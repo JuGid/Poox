@@ -6,9 +6,7 @@ abstract class PooxStyle {
 
     private array $builders = [];
 
-    public function __construct(
-        private PooxVariables $variables
-    ){}
+    private ?PooxVariables $variables;
 
     private function add(PooxBuilder $pooxBuilder) {
         $this->builders[] = $pooxBuilder;
@@ -18,6 +16,10 @@ abstract class PooxStyle {
         $builder = new PooxBuilder();
         $this->add($builder);
         return $builder;
+    }
+
+    public function setVariables(?PooxVariables $variables) : void {
+        $this->variables = $variables;
     }
 
     protected function getValueOf(string $variableName) : string {

@@ -1,7 +1,7 @@
 # Poox
 [![codecov](https://codecov.io/gh/JuGid/Poox/branch/master/graph/badge.svg?token=MYW4EAZ78V)](https://codecov.io/gh/JuGid/Poox) 
 
-Poox is a library used to generate CSS files as PHP classes.
+Poox is a library to generate CSS files with PHP classes.
 The name is the concatenation of POO (Programmation Orientée Objet) and CSS (sounds as X in French)
 
 ## Installation
@@ -27,7 +27,7 @@ $variables = new PooxVariables();
 $variables->add('poox-green', '#a0c918');
 
 $poox = new Poox($variables);
-$poox->generate(__DIR__.'/myClasses', __DIR__. '/assets', 'The\Namespaces\Of\PooxStyles');
+$poox->generate('/myClasses', '/assets', ['The\Namespaces\Of\PooxStyles']);
 ```
 
 ### Create a style (or more)
@@ -61,7 +61,7 @@ php build.php
 ## Roadmap
 
 - [ ] Finish methods for all properties
-- [ ] Multiple namespace styles
+- [x] Multiple namespace styles
 - [ ] Syntactic sugar
 
 ## License
