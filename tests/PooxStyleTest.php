@@ -3,7 +3,6 @@
 namespace Poox\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Poox\PooxBuilder;
 use Poox\PooxStyle;
 use Poox\PooxVariables;
 use Poox\Tests\TestsInstances\Menu;
@@ -20,8 +19,13 @@ class PooxStyleTest extends TestCase {
         $variables->add('poox-green', '#00FF00');
         $variables->add('poox-red', '#FF0000');
 
-        $this->basicStyle = new Menu($variables);
-        $this->getofStyle = new MenuGetOfValues($variables);
+        $this->basicStyle = new Menu();
+        $this->getofStyle = new MenuGetOfValues();
+
+        // Setting variables because this is how PooxStyle(s) work now 
+        // since implementation has changed
+        $this->basicStyle->setVariables($variables);
+        $this->getofStyle->setVariables($variables);
     }
 
     public function testShouldCreatePooxBuilder() {
