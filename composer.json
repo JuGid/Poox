@@ -3,6 +3,7 @@
     "description": "Create your CSS files with objects",
     "type": "library",
     "require": {
+        "php": ">=8.0",
         "twig/twig": "^3.0",
         "symfony/finder": "^5.3",
         "symfony/filesystem": "^5.3"
