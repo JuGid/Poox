@@ -3,7 +3,15 @@
 namespace Poox\Trait;
 
 trait PropertiesTrait {
-    use MarginTrait, PaddingTrait, ListStyleTrait, AlignTrait, AnimationTrait;
+    use 
+    MarginTrait, 
+    PaddingTrait, 
+    ListStyleTrait, 
+    AlignTrait, 
+    AnimationTrait, 
+    SizeTrait,
+    PositionTrait,
+    OverflowTrait;
 
     public abstract function addProperty(string $name, string|int|float|array $value) : self;
 

@@ -21,4 +21,20 @@ trait ListStyleTrait {
 
         return $this->addProperty('list-style', $value);
     }
+
+    public function listStyleImage(string $value) : self {
+        if(str_contains($value, '.')) {
+            $value = "url(\'".$value."\')";
+        }
+
+        return $this->addProperty('list-style-image', $value);
+    }
+
+    public function listStylePosition(string $value) : self {
+        return $this->addProperty('list-style-position', $value);
+    }
+
+    public function listStyleType(string $value) : self {
+        return $this->addProperty('list-style-type', $value);
+    }
 }
