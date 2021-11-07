@@ -31,6 +31,10 @@ trait PropertiesTrait {
         return $this->addProperty('text-decoration', $value);
     }
 
+    public function all(string $value) : self {
+        return $this->addProperty('all', $value);
+    }
+
     public function convertToString(int|string|float $value, string $unit) : string {
         return is_string($value) ? sprintf('%s', $value) : sprintf('%d%s', $value, $unit);
     }
