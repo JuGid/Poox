@@ -15,4 +15,12 @@ trait OverflowTrait {
     public function overflowY(string $value) : self {
         return $this->addProperty('overflow-y', $value);
     }
+
+    public function overflowWrap(string $value) : self {
+        return $this->addProperty('overflow-wrap', $value);
+    }
+
+    public function textOverflow(string $value) : self {
+        return $this->addProperty('text-overflow', $value);
+    }
 }

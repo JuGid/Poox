@@ -7,13 +7,9 @@ use Poox\PooxBuilder;
 
 trait MarginTrait {
 
-    public function margin(int|string ...$values) : self {
+    public function margin(...$values) : self {
 
-        foreach($values as $val) {
-            if(!is_string($val) && !is_integer($val)) {
-                throw new InvalidArgumentException('Arguments of function margin may be string or integer');
-            }
-        }
+        $this->verify($values);
 
         switch(count($values)) {
             case 1:

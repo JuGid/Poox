@@ -2,6 +2,8 @@
 
 namespace Poox\Trait;
 
+use InvalidArgumentException;
+
 trait PropertiesTrait {
     use 
     MarginTrait, 
@@ -11,7 +13,9 @@ trait PropertiesTrait {
     AnimationTrait, 
     SizeTrait,
     PositionTrait,
-    OverflowTrait;
+    OverflowTrait,
+    TextDecorationTrait,
+    BorderTrait;
 
     public abstract function addProperty(string $name, string|int|float|array $value) : self;
 
@@ -33,6 +37,14 @@ trait PropertiesTrait {
 
     public function all(string $value) : self {
         return $this->addProperty('all', $value);
+    }
+
+    public function verify(...$values) : void {
+        foreach($values as $val) {
+            if(!is_string($val) && !is_integer($val)) {
+                throw new InvalidArgumentException('Arguments of function textDecoration may be string or integer');
+            }
+        }
     }
 
     public function convertToString(int|string|float $value, string $unit) : string {
