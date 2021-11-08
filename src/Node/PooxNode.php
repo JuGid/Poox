@@ -40,6 +40,10 @@ class PooxNode {
         return $this->properties;
     }
 
+    public function setProperties(array $properties) : void {
+        $this->properties = $properties;
+    }
+
     public function getParent() : ?PooxNode {
         return $this->parent;
     }

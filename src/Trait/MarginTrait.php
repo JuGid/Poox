@@ -2,27 +2,26 @@
 
 namespace Poox\Trait;
 
-use InvalidArgumentException;
 use Poox\PooxBuilder;
 
 trait MarginTrait {
 
-    public function margin(...$values) : self {
+    public function margin(string $unit, ...$values) : self {
 
         $this->verify($values);
 
         switch(count($values)) {
             case 1:
-                $this->marginFull($values[0]);
+                $this->marginFull($values[0], $unit);
                 break;
             case 2:
-                $this->marginVH($values[0], $values[1]);
+                $this->marginVH($values[0], $values[1], $unit);
                 break;
             case 3:
-                $this->marginTHB($values[0], $values[1], $values[2]);
+                $this->marginTHB($values[0], $values[1], $values[2], $unit);
                 break;
             case 4:
-                $this->marginTRBL($values[0], $values[1], $values[2], $values[3]);
+                $this->marginTRBL($values[0], $values[1], $values[2], $values[3], $unit);
                 break;
         }
 

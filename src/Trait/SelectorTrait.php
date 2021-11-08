@@ -2,6 +2,8 @@
 
 namespace Poox\Trait;
 
+use Poox\Node\PooxNodeType;
+
 trait SelectorTrait {
     public function active() : self {
         return $this->addCurrentNodeSelector(':active');
@@ -169,7 +171,7 @@ trait SelectorTrait {
 
     public function addCurrentNodeSelector(string $selector) {
         if(!$this->isCurrentNodeNull()) {
-            $this->getCurrentNode()->addSelector($selector);
+            $this->add($selector, PooxNodeType::NONE);
         }
 
         return $this;

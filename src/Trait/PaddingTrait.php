@@ -2,26 +2,25 @@
 
 namespace Poox\Trait;
 
-use InvalidArgumentException;
 use Poox\PooxBuilder;
 
 trait PaddingTrait {
-    public function padding(...$values) : self {
+    public function padding(string $unit, ...$values) : self {
 
         $this->verify($values);
 
         switch(count($values)) {
             case 1:
-                $this->paddingFull($values[0]);
+                $this->paddingFull($values[0], $unit);
                 break;
             case 2:
-                $this->paddingVH($values[0], $values[1]);
+                $this->paddingVH($values[0], $values[1], $unit);
                 break;
             case 3:
-                $this->paddingTHB($values[0], $values[1], $values[2]);
+                $this->paddingTHB($values[0], $values[1], $values[2], $unit);
                 break;
             case 4:
-                $this->paddingTRBL($values[0], $values[1], $values[2], $values[3]);
+                $this->paddingTRBL($values[0], $values[1], $values[2], $values[3], $unit);
                 break;
         }
 

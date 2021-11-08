@@ -1,36 +1,45 @@
-body {
-    background : #a0c918;
+.text-blue {
+    color : #00C2C2;
 }
 
-body p {
-    padding : 0px;
+.text-grey {
+    color : grey;
 }
 
-nav {
-    background : #a0c918;
+.text-blue-dark {
+    color : rgb(16,81,91);
 }
 
-nav ul {
-    margin : 0px;
-    padding : 0px;
-    list-style : none  ;
+.text-red {
+    color : red;
 }
 
-nav li {
-    display : inline-block;
+.text-green {
+    color : green;
 }
 
-nav a {
+.button-nav {
     display : block;
-    padding : 6px 12px;
+    padding : 0rem 1rem;
     text-decoration : none;
+    color : #00C2C2;
+    border-radius : 25px ;
 }
 
-nav>h1 {
-    padding : 0px;
+.button-nav:hover {
+    background : #00ABAB;
+    color : #FFF;
 }
 
-nav>h1~p {
-    padding : 0px;
+.module {
+    color : rgb(16,81,91);
+}
+
+.module:hover {
+    color : #FFF;
+}
+
+.border-search {
+    border-color : #00ABAB  !important;
 }
 

@@ -8,7 +8,7 @@ trait BorderTrait {
 
     public function borderColor(...$values) : self {
         $pattern = str_repeat('%s ', count($values));
-        return $this->addProperty('border-color', sprintf($pattern, $values));
+        return $this->addProperty('border-color', vsprintf($pattern, $values));
     }
 
     public function borderCollapse(string $value) : self {
@@ -17,12 +17,12 @@ trait BorderTrait {
 
     public function borderRadius(...$values) : self {
         $pattern = str_repeat('%s ', count($values));
-        return $this->addProperty('border-radius', sprintf($pattern, $values));
+        return $this->addProperty('border-radius', vsprintf($pattern, $values));
     }
 
     public function borderWidth(...$values) : self {
         $pattern = str_repeat('%s ', count($values));
-        return $this->addProperty('border-width', sprintf($pattern, $values));
+        return $this->addProperty('border-width', vsprintf($pattern, $values));
     }
 
     public function borderTop(string $width, string $style, string $color = '') : self {

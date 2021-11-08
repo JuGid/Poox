@@ -19,6 +19,14 @@ trait PropertiesTrait {
 
     public abstract function addProperty(string $name, string|int|float|array $value) : self;
 
+    public function important() : self {
+        $nodeProperties = $this->getCurrentNode()->getProperties();
+        $lastPropertyKey = array_key_last($nodeProperties);
+        $nodeProperties[$lastPropertyKey] = $nodeProperties[$lastPropertyKey] . ' !important';
+        $this->getCurrentNode()->setProperties($nodeProperties);
+        return $this;
+    }
+
     public function color(string $value) : self {
         return $this->addProperty('color', $value);
     }
@@ -28,7 +36,7 @@ trait PropertiesTrait {
     }
 
     public function background(string $color) {
-        $this->addProperty('background', $color);
+        return $this->addProperty('background', $color);
     }
 
     public function textDecoration(string $value) : self {
@@ -39,9 +47,10 @@ trait PropertiesTrait {
         return $this->addProperty('all', $value);
     }
 
-    public function verify(...$values) : void {
+    public function verify(array $values) : void {
         foreach($values as $val) {
-            if(!is_string($val) && !is_integer($val)) {
+            if(!is_string($val) && !is_integer($val) && !is_double($val)) {
+                echo 'Value ', $val, "\n";
                 throw new InvalidArgumentException('Arguments of function textDecoration may be string or integer');
             }
         }
